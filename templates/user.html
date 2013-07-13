@@ -1,0 +1,18 @@
+<html>
+    <body>
+        <h2>{{user.email}}</h2>
+        <h3>All Posts</h3>
+            {% for p in posts %}
+                <p><a href = "/post?post_id={{p.id}}">{{p.title}}</a> - {{p.created_at}}</p>
+            {% endfor %} 
+        <h3>All Comments</h3>
+            {% for c in comments %}
+                <p>{{c.body}} - {{c.created_at}} (on <em> {{c.post_title}}</em>)</p>
+            {% endfor %}
+        <h3>All Votes</h3>
+            {% for v in votes %}
+                <p>{{v.post_title}} - {{v.comment}} [[thumbs up]]</p>
+            {% endfor %}
+
+    </body>
+</html>
