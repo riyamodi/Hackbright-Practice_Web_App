@@ -9,9 +9,9 @@
             {% for c in comments %}
                 <p>{{c.body}} - {{c.created_at}} (on <em> {{c.post_title}}</em>)</p>
             {% endfor %}
-        <h3>All Votes</h3>
+        <h3>Comments that I've liked:</h3>
             {% for v in votes %}
-                <p>{{v.post_title}} - {{v.comment}} [[thumbs up]]</p>
+                <p><a href = "/post?post_id={{v.post_title}}">{{v.post_title}}</a> - {{v.comment}} [[thumbs up]]</p>
             {% endfor %}
 
     </body>

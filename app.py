@@ -29,7 +29,13 @@ def get_user_info():
 @app.route("/post")
 def get_post():
     model.conn_db()
-    post = request.args.get("post_id")
+    post_id = request.args.get("post_id")
+    print "post is: " , post_id
+    #need to fix this so I decide whether to search for title or id
+    list_posts = model.get_post(title=post_id)
+    print "list_posts is: " , list_posts
+    html = render_template("post.html",list_posts=list_posts)
+    return html
 
  
 if __name__ == "__main__":

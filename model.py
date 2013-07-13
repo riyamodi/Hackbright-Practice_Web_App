@@ -79,3 +79,38 @@ def get_user(id):
     row = db.fetchone()
     user = User(row[0],row[1])
     return user
+
+def get_full_post(id):
+    print "in get full post method!!!"
+    print "id is: ", id
+    query = """ SELECT title,created_at,body,id FROM posts WHERE id = ?"""
+    db.execute(query, (id,))
+    row = db.fetchone()
+    print "row is: ", row
+    post = Post(row[0], row[1], row[2], row[3]) 
+    print "post is: ", post
+    return post
+
+#way to search for id and title instead of writing another function similar to the above but that passes in (title)
+def get_post(id = None, title = None):
+    print "in get full post method!!!"
+    print "id is: ", id
+    query = """ SELECT title,created_at,body,id FROM posts WHERE """
+    query_tuple = tuple()
+
+    if id:
+        query += " id = ? "
+        query_tuple += (id,)
+
+    if title:
+        query += " title like ? "
+        title = "%" + title +"%"
+        query_tuple += (title,)
+
+    db.execute(query, query_tuple)
+    row = db.fetchone()
+
+    print "row is: ", row
+    post = Post(row[0], row[1], row[2], row[3])
+    print "post is: ", post
+    return post
